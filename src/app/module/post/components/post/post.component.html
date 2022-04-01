@@ -1,0 +1,201 @@
+<header id="header">
+  <nav class="navbar navbar-default navbar-fixed-top menu">
+    <div class="container">
+
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" routerLink="/user/newsfeed/detail"><img src="./assets/images/logo.png" alt="logo"/></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right main-menu">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">Home <span><img src="images/down-arrow.png" alt=""/></span></a>
+            <ul class="dropdown-menu newsfeed-home">
+              <li><a routerLink="/user/newsfeed/detail">Newsfeed</a></li>
+              <!--              <li><a href="index-register.html">Landing Page 2</a></li>-->
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">Newsfeed <span><img src="images/down-arrow.png" alt=""/></span></a>
+            <ul class="dropdown-menu newsfeed-home">
+              <li><a routerLink="/user/newsfeed/detail">Newsfeed</a></li>
+              <li><a routerLink="/user/newsfeed/requests">Friend Requests</a></li>
+              <li><a routerLink="/user/newsfeed/friends">My friends</a></li>
+              <li><a routerLink="/user/newsfeed/people-nearby">Friend Suggestions</a></li>
+              <li><a href="newsfeed-messages.html">Chatroom</a></li>
+              <li><a href="newsfeed-images.html">Images</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">Timeline <span><img src="images/down-arrow.png" alt=""/></span></a>
+            <ul class="dropdown-menu login">
+              <li><a routerLink="/user/user-detail/timeline-post">Timeline</a></li>
+              <li><a routerLink="/user/user-detail/timeline">Timeline About</a></li>
+              <li><a routerLink="/user/user-detail/timeline-friends">Timeline Friends</a></li>
+              <li><a href="edit-profile-settings.html">Account Settings</a></li>
+              <li><a routerLink="/user/password">Change Password</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle pages" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">All Pages <span><img src="images/down-arrow.png" alt=""/></span></a>
+            <ul class="dropdown-menu page-list">
+              <li><a routerLink="/user/newsfeed/detail">Newsfeed</a></li>
+              <!--              <li><a href="index-register.html">Landing Page 2</a></li>-->
+              <!--              <li><a routerLink="/user/newsfeed/detail">Newsfeed</a></li>-->
+              <li><a routerLink="/user/newsfeed/requests">Friend Requests</a></li>
+              <li><a routerLink="/user/newsfeed/friends">My friends</a></li>
+              <li><a routerLink="/user/newsfeed/people-nearby">Friend Suggestions</a></li>
+              <li><a href="newsfeed-messages.html">Chatroom</a></li>
+              <li><a href="newsfeed-images.html">Images</a></li>
+              <li><a href="timeline.html">Timeline</a></li>
+              <li><a routerLink="/user/user-detail/timeline">Timeline About</a></li>
+              <li><a routerLink="/user/user-detail/timeline-friends">Timeline Friends</a></li>
+              <li><a routerLink="/user/edit">Edit Profile</a></li>
+              <li><a routerLink="/user/password">Change Password</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a>{{userDetail?.username}}</a></li>
+          <li class="dropdown"><img style="width: 40px;height: 40px;border-radius: 50%;margin-top: 8px" src="{{userDetail?.avatar}}"
+                                    alt=""></li>
+          <li class="dropdown"><a (click)="logout()">Logout</a></li>
+        </ul>
+        <form class="navbar-form navbar-right hidden-sm">
+          <div class="form-group">
+            <i class="icon ion-android-search"></i>
+            <input type="text" class="form-control" placeholder="Search friends, photos, videos">
+          </div>
+        </form>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+  </nav>
+</header>
+<!--Header End-->
+<div class="container">
+
+  <!-- Timeline
+  ================================================= -->
+  <div class="timeline">
+    <div [ngStyle]="{'background': 'url(' + userDetail?.cover + ')'}" class="timeline-cover">
+
+      <!--Timeline Menu for Large Screens-->
+      <div class="timeline-nav-bar hidden-sm hidden-xs">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="profile-info">
+              <img src="{{userDetail?.avatar}}" alt="" class="img-responsive profile-photo"/>
+              <h3>{{userDetail?.username}}</h3>
+              <p class="text-muted">{{userDetail?.address}}</p>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <ul class="list-inline profile-menu">
+              <li><a routerLink="/post/detail/list-post">Timeline</a></li>
+              <li><a routerLink="/user/user-detail/timeline">About</a></li>
+              <li><a href="timeline-album.html">Album</a></li>
+              <li><a routerLink="/user/user-detail/timeline-friends">Friends</a></li>
+            </ul>
+            <ul class="follow-me list-inline">
+            </ul>
+          </div>
+        </div>
+      </div><!--Timeline Menu for Large Screens End-->
+
+      <!--Timeline Menu for Small Screens-->
+      <div class="navbar-mobile hidden-lg hidden-md">
+        <div class="profile-info">
+          <img src="{{userDetail?.avatar}}" alt="" class="img-responsive profile-photo"/>
+          <h4>{{userDetail?.username}}</h4>
+          <p class="text-muted">{{userDetail?.address}}</p>
+        </div>
+        <div class="mobile-menu">
+          <ul class="list-inline">
+            <li><a routerLink="/post/detail/list-post">Timeline</a></li>
+            <li><a routerLink="/user/user-detail/timeline">About</a></li>
+            <li><a href="timeline-album.html">Album</a></li>
+            <li><a href="timeline-friends.html">Friends</a></li>
+          </ul>
+        </div>
+      </div><!--Timeline Menu for Small Screens End-->
+
+    </div>
+    <router-outlet></router-outlet>
+
+  </div>
+</div>
+
+<!-- Footer
+================================================= -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footer-wrapper">
+        <div class="col-md-3 col-sm-3">
+          <a href=""><img src="images/logo-black.png" alt="" class="footer-logo"/></a>
+          <ul class="list-inline social-icons">
+            <li><a href="#"><i class="icon ion-social-facebook"></i></a></li>
+            <li><a href="#"><i class="icon ion-social-twitter"></i></a></li>
+            <li><a href="#"><i class="icon ion-social-googleplus"></i></a></li>
+            <li><a href="#"><i class="icon ion-social-pinterest"></i></a></li>
+            <li><a href="#"><i class="icon ion-social-linkedin"></i></a></li>
+          </ul>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <h5>For individuals</h5>
+          <ul class="footer-links">
+            <li><a href="">Signup</a></li>
+            <li><a href="">login</a></li>
+            <li><a href="">Explore</a></li>
+            <li><a href="">Finder app</a></li>
+            <li><a href="">Features</a></li>
+            <li><a href="">Language settings</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <h5>For businesses</h5>
+          <ul class="footer-links">
+            <li><a href="">Business signup</a></li>
+            <li><a href="">Business login</a></li>
+            <li><a href="">Benefits</a></li>
+            <li><a href="">Resources</a></li>
+            <li><a href="">Advertise</a></li>
+            <li><a href="">Setup</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <h5>About</h5>
+          <ul class="footer-links">
+            <li><a href="">About us</a></li>
+            <li><a href="">Contact us</a></li>
+            <li><a href="">Privacy Policy</a></li>
+            <li><a href="">Terms</a></li>
+            <li><a href="">Help</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <h5>Contact Us</h5>
+          <ul class="contact">
+            <li><i class="icon ion-ios-telephone-outline"></i>+1 (234) 222 0754</li>
+            <li><i class="icon ion-ios-email-outline"></i>info@thunder-team.com</li>
+            <li><i class="icon ion-ios-location-outline"></i>228 Park Ave S NY, USA</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>Thunder Team © 2016. All rights reserved</p>
+  </div>
+</footer>

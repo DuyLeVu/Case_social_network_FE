@@ -1,0 +1,203 @@
+<div id="page-contents">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-7">
+
+      <!-- Post Create Box
+      ================================================= -->
+      <div class="create-post">
+        <div class="row">
+          <form [formGroup]="postForm" (submit)="createPost()">
+
+                <div class="col-md-7 col-sm-7">
+
+                  <div class="form-group">
+
+                    <img src="{{userDetail?.avatar}}" alt="" class="profile-photo-md"/>
+                    <textarea formControlName="content" name="texts" id="exampleTextarea" cols="30" rows="1"
+                              class="form-control" placeholder="Write what you wish"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-5 col-sm-5">
+                  <div class="tools">
+                    <ul class="publishing-tools list-inline">
+                      <li>
+                        <select formControlName="status">
+                          <option value="1">Public</option>
+                          <option value="2">Only friends</option>
+                          <option value="3">Private</option>
+                        </select></li>
+                      <!--              <li><a href="#"><i class="ion-images"></i></a></li>-->
+                      <!--              <li><a href="#"><i class="ion-ios-videocam"></i></a></li>-->
+                      <!--              <li><a href="#"><i class="ion-map"></i></a></li>-->
+                    </ul>
+                    <button class="btn btn-primary pull-right">POST</button>
+                  </div>
+                </div>
+              </form>
+        </div>
+      </div><!-- Post Create Box End-->
+
+      <tbody *ngFor="let ct of post ; index as i">
+
+      <div class="post-content">
+
+        <!--Post Date-->
+        <div class="post-date hidden-xs hidden-sm">
+          <h5>{{userDetail?.username}}</h5>
+          <p class="text-grey">{{ct.createAt | date:"mm/dd/yyyy"}}</p>
+        </div><!--Post Date End-->
+
+        <img src="http://placehold.it/1920x1280" alt="post-image" class="img-responsive post-image"/>
+        <div class="post-container">
+          <img src="http://placehold.it/300x300" alt="user" class="profile-photo-md pull-left"/>
+          <div class="post-detail">
+            <div class="user-info">
+              <h5><a routerLink="user/user-detail/timeline" class="profile-link">{{ct.user?.username}}</a>
+              </h5>
+              <p class="text-muted">{{ct?.createAt | date:"mm/dd/yyyy"}}</p>
+            </div>
+            <div class="reaction">
+<!--              <a class="btn text-green"><i class="icon ion-thumbsup"></i> 49</a>-->
+<!--              <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>-->
+              <button class="btn text-green" style="margin-right: 5px" (click)="update(ct?.id,ct.user?.id)">Edit</button>
+              <button class="btn text-red"(click)="deletePost(ct?.id)">delete</button>
+
+
+            </div>
+
+            <div class="line-divider"></div>
+            <div class="post-text">
+
+
+              <td>{{ct.content}}</td>
+
+            </div>
+            <div class="line-divider"></div>
+            <div class="post-comment">
+              <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm"/>
+              <p><a href="timeline.html" class="profile-link">Diana </a><i class="em em-laughing"></i> Lorem ipsum
+                dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+            </div>
+            <div class="post-comment">
+              <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm"/>
+              <p><a href="timeline.html" class="profile-link">John</a> Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                veniam, quis nostrud </p>
+            </div>
+            <div class="post-comment">
+              <img src="http://placehold.it/300x300" alt="" class="profile-photo-sm"/>
+              <input type="text" class="form-control" placeholder="Post a comment">
+            </div>
+          </div>
+        </div>
+      </div>
+      </tbody>
+      <!-- Post Content
+      ================================================= -->
+
+
+    </div>
+    <div class="col-md-2 static">
+<!--      <div id="sticky-sidebar">-->
+<!--        <h4 class="grey">{{userDetail.username}}'s activity</h4>-->
+<!--        <div class="feed-item">-->
+<!--          <div class="live-activity">-->
+<!--&lt;!&ndash;            <p><a href="#" class="profile-link">Sarah</a> Commended on a Photo</p>&ndash;&gt;-->
+<!--            <p class="text-muted">5 mins ago</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="feed-item">-->
+<!--          <div class="live-activity">-->
+<!--            <p><a href="#" class="profile-link">Sarah</a> Has posted a photo</p>-->
+<!--            <p class="text-muted">an hour ago</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="feed-item">-->
+<!--          <div class="live-activity">-->
+<!--            <p><a href="#" class="profile-link">Sarah</a> Liked her friend's post</p>-->
+<!--            <p class="text-muted">4 hours ago</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="feed-item">-->
+<!--          <div class="live-activity">-->
+<!--            <p><a href="#" class="profile-link">Sarah</a> has shared an album</p>-->
+<!--            <p class="text-muted">a day ago</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+    </div>
+  </div>
+</div>
+
+<!--modal-->
+<div class="modal fade" id="formEdit" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="formEdit1">Update
+          post</h5>
+        <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="postEditForm" (submit)="editPost()">
+        <input type="hidden" ngModel="{{idPostEdit}}" formControlName="postId">
+        <input type="hidden" ngModel="{{idUserPostEdit}}" formControlName="postIdUser">
+        <div class="modal-body">
+            <textarea formControlName="content1" name="texts" cols="30" rows="1"
+                      class="form-control" placeholder="Write what you wish"></textarea>
+          <h3>Select Status</h3>
+          <select formControlName="status1">
+            <option value="1">Public</option>
+            <option value="2">Only Friend</option>
+            <option value="3">Private</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <input type="submit" class="btn btn-primary"
+                 value="Save changes">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="createPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createPost1">Processing. Please wait...</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <b>Successfully post!</b>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editPost1">Processing. Please wait...</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <b>Successfully edit post!</b>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>

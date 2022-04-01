@@ -1,0 +1,300 @@
+<header id="header">
+  <nav class="navbar navbar-default navbar-fixed-top menu">
+    <div class="container">
+
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" routerLink="/user/newsfeed/detail"><img src="assets/images/logo.png" alt="logo" /></a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right main-menu">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <span><img src="assets/images/down-arrow.png" alt="" /></span></a>
+            <ul class="dropdown-menu newsfeed-home">
+              <li><a routerLink="/user/newsfeed/detail">Newsfeed</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Newsfeed <span><img src="assets/images/down-arrow.png" alt="" /></span></a>
+            <ul class="dropdown-menu newsfeed-home">
+              <li><a routerLink="/user/newsfeed/detail">Newsfeed</a></li>
+              <li><a routerLink="/user/newsfeed/requests">Friend Requests</a></li>
+              <li><a routerLink="/user/newsfeed/friends">My friends</a></li>
+              <li><a routerLink="/user/newsfeed/people-nearby">Friend Suggestions</a></li>
+              <li><a href="newsfeed-messages.html">Chatroom</a></li>
+              <li><a href="newsfeed-images.html">Images</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Timeline <span><img src="assets/images/down-arrow.png" alt="" /></span></a>
+            <ul class="dropdown-menu login">
+              <li><a routerLink="/post/detail/list-post">Timeline</a></li>
+              <li><a routerLink="/user/user-detail/timeline">Timeline About</a></li>
+              <li><a routerLink="/user/user-detail/timeline-friends">Timeline Friends</a></li>
+              <li><a href="edit-profile-settings.html">Account Settings</a></li>
+              <li><a routerLink="/user/password">Change Password</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle pages" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">All Pages <span><img src="assets/images/down-arrow.png" alt="" /></span></a>
+            <ul class="dropdown-menu page-list">
+              <li><a routerLink="/user/newsfeed/detail">Newsfeed</a></li>
+              <!--              <li><a href="index-register.html">Landing Page 2</a></li>-->
+              <!--              <li><a routerLink="/user/newsfeed/detail">Newsfeed</a></li>-->
+              <li><a routerLink="/user/newsfeed/requests">Friend Requests</a></li>
+              <li><a routerLink="/user/newsfeed/friends">My friends</a></li>
+              <li><a routerLink="/user/newsfeed/people-nearby">Friend Suggestions</a></li>
+              <li><a href="newsfeed-messages.html">Chatroom</a></li>
+              <li><a href="newsfeed-images.html">Images</a></li>
+              <li><a routerLink="/post/detail/list-post">Timeline</a></li>
+              <li><a routerLink="/user/user-detail/timeline">Timeline About</a></li>
+              <li><a routerLink="/user/user-detail/timeline-friends">Timeline Friends</a></li>
+              <li><a routerLink="/user/edit">Edit Profile</a></li>
+              <li><a routerLink="/user/password">Change Password</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a >{{currentUser.username}}</a></li>
+          <li class="dropdown"><img style="width: 40px;height: 40px;border-radius: 50%;margin-top: 8px" src="{{avatar}}" alt=""></li>
+          <li class="dropdown"><a (click)="logout()" >Logout</a></li>
+        </ul>
+        <form class="navbar-form navbar-right hidden-sm">
+          <div class="form-group">
+            <i class="icon ion-android-search"></i>
+            <input type="text" class="form-control" placeholder="Search friends, photos, videos">
+          </div>
+        </form>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+  </nav>
+</header>
+<!--Header End-->
+
+<div class="container">
+
+  <!-- Timeline
+  ================================================= -->
+  <div class="timeline">
+    <div [ngStyle]="{'background': 'url(' + cover + ')'}" class="timeline-cover">
+
+      <!--Timeline Menu for Large Screens-->
+      <div class="timeline-nav-bar hidden-sm hidden-xs">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="profile-info">
+              <img src="{{avatar}}" alt="" class="img-responsive profile-photo" />
+              <h3>{{currentUser.username}}</h3>
+              <p class="text-muted">{{currentUser.address}}</p>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <ul class="list-inline profile-menu">
+              <li><a routerLink="/post/detail/list-post">Timeline</a></li>
+              <li><a routerLink="/user/user-detail/timeline">About</a></li>
+              <li><a href="timeline-album.html">Album</a></li>
+              <li><a routerLink="/user/user-detail/timeline-friends">Friends</a></li>
+            </ul>
+            <ul class="follow-me list-inline">
+
+            </ul>
+          </div>
+        </div>
+      </div><!--Timeline Menu for Large Screens End-->
+
+      <!--Timeline Menu for Small Screens-->
+      <div class="navbar-mobile hidden-lg hidden-md">
+        <div class="profile-info">
+          <img src="{{avatar}}" alt="" class="img-responsive profile-photo" />
+          <h4>{{currentUser.username}}</h4>
+          <p class="text-muted">{{currentUser.address}}</p>
+        </div>
+        <div class="mobile-menu">
+          <ul class="list-inline">
+            <li><a routerLink="/post/detail/list-post">Timeline</a></li>
+            <li><a routerLink="/user/user-detail/timeline">About</a></li>
+            <li><a href="timeline-album.html">Album</a></li>
+            <li><a href="timeline-friends.html">Friends</a></li>
+          </ul>
+        </div>
+      </div><!--Timeline Menu for Small Screens End-->
+
+    </div>
+    <div id="page-contents">
+      <div class="row">
+        <div class="col-md-3">
+
+          <!--Edit Profile Menu-->
+          <ul class="edit-menu">
+            <li class="active"><i class="icon ion-ios-information-outline"></i><a routerLink="/user/user-detail">Basic Information</a></li>
+<!--            <li><i class="icon ion-ios-briefcase-outline"></i><a href="edit-profile-work-edu.html">Education and Work</a></li>-->
+<!--            <li><i class="icon ion-ios-heart-outline"></i><a href="edit-profile-interests.html">My Interests</a></li>-->
+            <li><i class="icon ion-ios-settings"></i><a href="edit-profile-settings.html">Account Settings</a></li>
+            <li><i class="icon ion-ios-locked-outline"></i><a routerLink="/user/password">Change Password</a></li>
+          </ul>
+        </div>
+        <div class="col-md-7">
+
+          <!-- Basic Information
+          ================================================= -->
+          <div class="edit-profile-container">
+            <div class="block-title">
+              <h4 class="grey"><i class="icon ion-android-checkmark-circle"></i>Edit basic information</h4>
+              <div class="line"></div>
+            </div>
+            <div class="edit-block">
+              <div class="form-group col-12">
+                <label for="avatar">My Avatar</label>
+                <input type="file"
+                       id="avatar"
+                       #userPhoto
+                       (change)="onFileSelected($event)"
+                       name="image"
+                       autocomplete="off"
+                />
+              </div>
+              <div class="form-group col-12">
+                <label for="cover">My Cover</label>
+                <input type="file"
+                       id="cover"
+                       #userPhoto
+                       (change)="onFileSelected1($event)"
+                       name="image"
+                       autocomplete="off"
+                />
+              </div>
+              <form [formGroup]="updateForm" (ngSubmit)="update()" name="basic-info" id="basic-info" class="form-inline">
+                <div class="row">
+                  <div class="form-group col-xs-12">
+                    <label for="fullname">My full name</label>
+                    <input formControlName="fullName" id="fullname" class="form-control input-group-lg" type="text" name="fullname" title="Enter fullname" />
+                  </div>
+                  <div style="color: red;padding-left: 30px" role="alert"
+                       *ngIf="updateForm.controls['fullName'].errors?.['required']
+         && updateForm.controls['fullName'].touched">Full name is required!
+                  </div>
+                  <div style="color: red;padding-left: 30px" role="alert"
+                       *ngIf="updateForm.controls['fullName'].errors?.['pattern']
+         && updateForm.controls['fullName'].touched">Not a valid name!
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-xs-12">
+                    <label for="phone">Phone number</label>
+                    <input formControlName="phone" id="phone" class="form-control input-group-lg" type="text"
+                           name="phone" title="Enter Phone number" />
+                  </div>
+                  <div style="color: red;padding-left: 30px" role="alert"
+                       *ngIf="updateForm.controls['phone'].errors?.['required']
+         && updateForm.controls['phone'].touched">Phone number is required!
+                  </div>
+                  <div style="color: red;padding-left: 30px" role="alert"
+                       *ngIf="updateForm.controls['phone'].errors?.['pattern']
+         && updateForm.controls['phone'].touched">Not a valid number!
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-xs-12">
+                    <label for="address">My address</label>
+                    <input formControlName = "address" id="address" class="form-control input-group-lg" type="text" name="address" title="Enter address" />
+                  </div>
+                  <div style="color: red;padding-left: 30px" role="alert"
+                       *ngIf="updateForm.controls['address'].errors?.['required']
+         && updateForm.controls['address'].touched">Address is required!
+                  </div>
+                  <div style="color: red;padding-left: 30px" role="alert"
+                       *ngIf="updateForm.controls['address'].errors?.['pattern']
+         && updateForm.controls['address'].touched">Not a valid address!
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-xs-12">
+                    <label for="my-favorite">My favorite</label>
+                    <textarea formControlName="favorite" id="my-favorite" name="information" class="form-control"  rows="4" cols="400"></textarea>
+                  </div>
+                </div>
+                <button class="btn btn-primary">Save Changes</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 static">
+
+          <!--Sticky Timeline Activity Sidebar-->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer
+================================================= -->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footer-wrapper">
+        <div class="col-md-3 col-sm-3">
+          <a href=""><img src="assets/images/logo-black.png" alt="" class="footer-logo" /></a>
+          <ul class="list-inline social-icons">
+            <li><a href="#"><i class="icon ion-social-facebook"></i></a></li>
+            <li><a href="#"><i class="icon ion-social-twitter"></i></a></li>
+            <li><a href="#"><i class="icon ion-social-googleplus"></i></a></li>
+            <li><a href="#"><i class="icon ion-social-pinterest"></i></a></li>
+            <li><a href="#"><i class="icon ion-social-linkedin"></i></a></li>
+          </ul>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <h5>For individuals</h5>
+          <ul class="footer-links">
+            <li><a href="">Signup</a></li>
+            <li><a href="">login</a></li>
+            <li><a href="">Explore</a></li>
+            <li><a href="">Finder app</a></li>
+            <li><a href="">Features</a></li>
+            <li><a href="">Language settings</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <h5>For businesses</h5>
+          <ul class="footer-links">
+            <li><a href="">Business signup</a></li>
+            <li><a href="">Business login</a></li>
+            <li><a href="">Benefits</a></li>
+            <li><a href="">Resources</a></li>
+            <li><a href="">Advertise</a></li>
+            <li><a href="">Setup</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <h5>About</h5>
+          <ul class="footer-links">
+            <li><a href="">About us</a></li>
+            <li><a href="">Contact us</a></li>
+            <li><a href="">Privacy Policy</a></li>
+            <li><a href="">Terms</a></li>
+            <li><a href="">Help</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-sm-3">
+          <h5>Contact Us</h5>
+          <ul class="contact">
+            <li><i class="icon ion-ios-telephone-outline"></i>+1 (234) 222 0754</li>
+            <li><i class="icon ion-ios-email-outline"></i>info@thunder-team.com</li>
+            <li><i class="icon ion-ios-location-outline"></i>228 Park Ave S NY, USA</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>Thunder Team © 2016. All rights reserved</p>
+  </div>
+</footer>
